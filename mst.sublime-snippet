@@ -1,0 +1,48 @@
+<snippet>
+    <content><![CDATA[
+struct Edge {
+    int v, u, w;
+    Edge(int _v = 0, int _u = 0, int _w = 0) : v(_v), u(_u), w(_w) {}
+};
+
+struct Dsu {
+private:
+    int n;
+    vector <int> p, sz;
+public:
+    Dsu(int _n) {
+        n = _n;
+        p.resize(n, -1);
+        sz.resize(n, 1);
+    }
+
+    int get(int v) {
+        if (p[v] == -1)
+            return v;
+        return p[v] = get(p[v]);
+    }
+
+    void unite(int v, int u) {
+        v = get(v), u = get(u);
+        if (v == u)
+            return;
+        if (sz[v] > sz[u])
+            swap(v, u);
+        p[v] = u;
+        sz[u] += sz[v];
+    }
+};
+
+void mst(int n, const vector <Edge>& edges) {
+    Dsu d(n);
+    sort(all(edges), [&](Edge a, Edge b){return a.w < b.w;});
+    for (auto e : edges) 
+        if (d.get(e.v) != d.get(e.u))
+            d.unite(e.v, e.u);
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>mst</tabTrigger> 
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

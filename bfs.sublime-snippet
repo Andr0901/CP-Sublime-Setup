@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+vector <int> bfs(int st) {
+    vector <int> dst(sz(gr), INF);
+    deque <int> q;
+    dst[st] = 0;
+    q.pb(st);
+    while (!q.empty()) {
+        int v = q.front();
+        q.pop_front();
+        for (auto u : gr[v]) {
+            if (dst[v] + 1 < dst[u]) {
+                dst[u] = dst[v] + 1;
+                q.pb(u);
+            }
+        }
+    }
+    return dst;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>bfs</tabTrigger> 
+
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

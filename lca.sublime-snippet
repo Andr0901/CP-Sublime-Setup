@@ -1,0 +1,66 @@
+<snippet>
+    <content><![CDATA[
+struct Segtree {
+private:
+    int n;
+    vector <pii> tr;
+    pii neutral_tr = {INT_MAX, 0};
+
+    pii merge(pii a, pii b) {
+        if (a.fs < b.fs)
+            return a;
+        else 
+            return b;
+    }
+
+    void build(const vector <pii>& a) {
+        forn (i, 0, n) 
+            tr[i + n] = a[i];
+        for (int i = n - 1; i > 0; i--)
+            tr[i] = merge(tr[2 * i], tr[2 * i + 1]);
+    }
+public:
+    Segtree(const vector <pii>& a) {
+        n = sz(a);
+        tr.resize(2 * n, neutral_tr);
+        build(a);
+    }
+
+    pii get(int l, int r) {
+        pii ans = neutral_tr;
+        for (l += n, r += n; l < r; l /= 2, r /= 2) {
+            if (l % 2)
+                ans = merge(ans, tr[l++]);
+            if (r % 2)
+                ans = merge(ans, tr[--r]);
+        }
+        return ans;
+    }
+};
+
+vector <int> first;
+vector <pii> euler;
+
+void dfs(int v, int p, int cur_h, const vector <vector <int>>& gr) {
+    first[v] = sz(euler);
+    euler.eb(cur_h, v);
+    for (int u : gr[v]) {
+        if (u != p) {
+            dfs(u, v, cur_h + 1, gr);
+            euler.eb(cur_h, v);
+        }
+    }
+}
+
+int lca(int v, int u, Segtree& a) {
+    if (first[v] > first[u])
+        swap(v, u);
+    return a.get(first[v], first[u] + 1).sc;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>lca</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

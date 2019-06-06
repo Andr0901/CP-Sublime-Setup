@@ -1,0 +1,32 @@
+<snippet>
+    <content><![CDATA[
+vector <int> p;
+
+void init_p(const int MOD) {
+    p.resize(MAXN);
+    p[0] = 1;
+    forn (i, 1, sz(p))
+        p[i] = (1LL * p[i - 1] * P) % MOD;
+}
+
+int char_to_int(char c) {
+    return (c - 'a' + 1);
+}
+
+vector <int> init_h(const string& s, const int MOD) {
+    vector <int> h(sz(s) + 1);
+    forn (i, 1, sz(h))
+        h[i] = (1LL * h[i - 1] * P + char_to_int(s[i - 1])) % MOD;
+    return h;
+}
+
+int get(const vector <int>& h, int l, int r, const int MOD) {
+    return (h[r] - (1LL * h[l] * p[r - l]) % MOD + MOD) % MOD;
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>hashing</tabTrigger> 
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

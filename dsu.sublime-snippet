@@ -1,0 +1,35 @@
+<snippet>
+    <content><![CDATA[
+struct Dsu {
+private:
+    int n;
+    vector <int> p, sz;
+public:
+    Dsu(int _n) {
+        n = _n;
+        p.resize(n, -1);
+        sz.resize(n, 1);
+    }
+
+    int get(int v) {
+        if (p[v] == -1)
+            return v;
+        return p[v] = get(p[v]);
+    }
+
+    void unite(int v, int u) {
+        v = get(v), u = get(u);
+        if (v == u)
+            return;
+        if (sz[v] > sz[u])
+            swap(v, u);
+        p[v] = u;
+        sz[u] += sz[v];
+    }
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>dsu</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,25 @@
+<snippet>
+    <content><![CDATA[
+void dijkstra(int st, const vector <vector <pii>>& gr, vector <int>& dst) {
+    dst.resize(sz(gr), INF);
+    set <pii> s;
+    s.emplace(0, st);
+    dst[st] = 0;
+    while (!s.empty()) {
+        int v = s.begin() -> sc;
+        s.erase(s.begin());
+        for (pii u : gr[v]) {
+            if (dst[v] + u.sc < dst[u.fs]) {
+                s.erase({dst[u.fs], u.fs});
+                dst[u.fs] = dst[v] + u.sc;
+                s.emplace(dst[u.fs], u.fs);
+            }
+        }
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>dijkstra</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

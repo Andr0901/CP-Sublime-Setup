@@ -1,0 +1,30 @@
+<snippet>
+	<content><![CDATA[
+struct Vc{
+	int x, y;
+	Vc(int _x = 0, int _y = 0) {
+		 x = _x;
+		 y = _y;
+	}
+	Vc(Vc a, Vc b) {
+		x = b.x - a.x;
+		y = b.y - a.y;
+	}
+	int len() {
+		return x * x + y * y;
+	}
+};
+
+int operator%(Vc a, Vc b) {
+	return a.x * b.y - a.y * b.x;
+}
+
+int operator*(Vc a, Vc b) {
+	return a.x * b.x + a.y * b.y;
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>geomerty</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope></scope>
+</snippet>

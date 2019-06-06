@@ -1,0 +1,46 @@
+<snippet>
+    <content><![CDATA[
+struct Segtree {
+private:
+    int n;
+    vector <int> tr;
+    int neutral_tr = 0;
+
+    int merge(int a, int b) {
+        return a + b;
+    }
+
+    void build(const vector <int>& a) {
+        forn (i, 0, n) 
+            tr[i + n] = a[i];
+        for (int i = n - 1; i > 0; i--)
+            tr[i] = merge(tr[2 * i], tr[2 * i + 1]);
+    }
+public:
+    Segtree(const vector <int>& a) {
+        n = sz(a);
+        tr.resize(2 * n, neutral_tr);
+        build(a);
+    }
+
+    int get(int l, int r) {
+        int ans = neutral_tr;
+        for (l += n, r += n; l < r; l /= 2, r /= 2) {
+            if (l % 2)
+                ans = merge(ans, tr[l++]);
+            if (r % 2)
+                ans = merge(ans, tr[--r]);
+        }
+        return ans;
+    }
+    void upd(int i, int x) {
+        for (i += n, tr[i] += x; i /= 2; i > 1)
+            tr[i] = merge(tr[2 * i], tr[2 * i + 1]);
+    }
+};
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>segtree</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

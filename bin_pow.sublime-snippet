@@ -1,0 +1,15 @@
+<snippet>
+    <content><![CDATA[
+int bin_pow(int a, int p) {
+    if (!p)
+        return 1;
+    if (p % 2)
+        return (1LL * bin_pow(a, p - 1) * a) % MOD;
+    return (1LL * bin_pow(a, p / 2) * bin_pow(a, p / 2)) % MOD;
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>bin_pow</tabTrigger> 
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

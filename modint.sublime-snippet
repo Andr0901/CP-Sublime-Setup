@@ -1,0 +1,41 @@
+<snippet>
+    <content><![CDATA[
+const int MOD = ${1};
+
+int add(int x, int y) {
+    x += y;
+    if (x >= MOD)
+        return x - MOD;
+    return x;
+}
+
+int sub(int x, int y) {
+    x -= y;
+    if (x < 0)
+        return x + MOD;
+    return x;
+}
+
+int mul(int x, int y) {
+    return (1LL * x * y) % MOD;
+}
+
+int bin_pow(int a, int p) {
+    if (!p)
+        return 1;
+    if (p % 2)
+        return (1LL * bin_pow(a, p - 1) * a) % MOD;
+    int t = bin_pow(a, p / 2);
+    return (1LL * t * t) % MOD;
+}
+
+int inv(int x) {
+    return bin_pow(x, MOD - 2);
+}
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>MODINT</tabTrigger> 
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope> 
+</snippet>

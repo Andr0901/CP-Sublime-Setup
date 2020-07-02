@@ -1,33 +1,45 @@
 <snippet>
 	<content><![CDATA[
-#pragma GCC optimize("Ofast")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,tune=native")
-#pragma GCC optimize("unroll-loops")
+//#pragma GCC optimize("Ofast")
 #include <bits/stdc++.h>
 
 using namespace std;
 
-#define forn(i, s, f) for (int i = s; i < f; i++)
+//vector string deque break continue
+#define forn(i, s, f) for (int i = (int)s; i < (int)f; i++)
 #define ll long long
 #define ull unsigned long long
 #define ld long double
 #define pii pair <int, int>
 #define fs first
 #define sc second
+#define pf push_front
 #define pb push_back
+#define pop_f pop_front
+#define pop_b pop_back
 #define eb emplace_back
 #define all(x) (x).begin(), (x).end()
 #define rall(x) (x).rbegin(), (x).rend()
 #define sz(x) (int)(x).size()
 
+#ifdef DEBUG
+#else
+    #define cerr if (false) cerr
+#endif
+
+template <typename T> istream& operator>>(istream& in, vector <T>& a) {for (auto& i : a) in >> i; return in;}
+template <typename T> ostream& operator<<(ostream& out, vector <T>& a)  {for (auto& i : a) out << i << " "; return out;}
+template <typename T, typename U> void chkmin(T& a, U b) {if (a > b) a = b;}
+template <typename T, typename U> void chkmax(T& a, U b) {if (a < b) a = b;}
+
 int main() {
-	ios_base::sync_with_stdio(0), cin.tie(0);
-	
+    ios_base::sync_with_stdio(0), cin.tie(0);
+    
     return 0;
 }
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>start</tabTrigger> 
+	<tabTrigger>START</tabTrigger> 
 	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<scope></scope> 
+	<scope>source.c++</scope> 
 </snippet>

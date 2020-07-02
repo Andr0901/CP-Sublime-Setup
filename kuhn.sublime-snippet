@@ -1,11 +1,11 @@
 <snippet>
     <content><![CDATA[
-bool dfs(pii v) {
+bool try_kuhn(int v) {
     if (used[v])
         return 0;
     used[v] = 1;
-    for (pii u : gr[v]) {
-        if (mt[u] == -1 || dfs(mt[u])) {
+    for (auto u : gr[v]) {
+        if (mt[u] == -1 || try_kuhn(mt[u])) {
             mt[u] = v;
             return 1;
         }
@@ -14,7 +14,7 @@ bool dfs(pii v) {
 }
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-    <tabTrigger>kuhn</tabTrigger>
+    <tabTrigger>KUHN</tabTrigger>
     <!-- Optional: Set a scope to limit where the snippet will trigger -->
-    <!-- <scope>source.python</scope> -->
+    <scope>source.c++</scope> 
 </snippet>

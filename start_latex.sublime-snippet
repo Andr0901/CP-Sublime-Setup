@@ -1,0 +1,23 @@
+<snippet>
+    <content><![CDATA[
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry} 
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphics}
+\graphicspath{{Дискра/}}
+\DeclareGraphicsExtensions{.jpg}
+
+\begin{document} 
+    Че Андрей, 191
+
+\end{document}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>START</tabTrigger> 
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.tex.latex</scope> 
+</snippet>
